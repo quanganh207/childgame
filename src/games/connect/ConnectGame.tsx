@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GameShell } from "../../components/GameShell";
 import { useGameSettings } from "../../store/useGameSettings";
 import { launchConfetti } from "../../lib/confetti";
+import { saveGameResult } from "../../lib/gameHistory";
 
 const TIMER_SECONDS = 15;
 
@@ -63,6 +64,12 @@ export function ConnectGame() {
       if (newLives <= 0) {
         setIsGameOver(true);
         setFeedback("Đã hết thời gian! Game over.");
+        saveGameResult({
+          gameName: 'Nối Số',
+          level: levelNum + 1,
+          score: stars,
+          stars: Math.min(3, Math.floor(stars / 5))
+        });
       } else {
         setFeedback(`Hết giờ! Còn ${newLives} ❤️`);
         setCombo(0);
@@ -108,6 +115,12 @@ export function ConnectGame() {
         if (newLives <= 0) {
           setIsGameOver(true);
           setFeedback("Hết mạng! Game over.");
+          saveGameResult({
+            gameName: 'Nối Số',
+            level: levelNum + 1,
+            score: stars,
+            stars: Math.min(3, Math.floor(stars / 5))
+          });
         } else {
           setFeedback(`Sai rồi! Còn ${newLives} ❤️`);
           setTimeout(() => setFeedback(null), 1500);

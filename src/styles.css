@@ -561,23 +561,36 @@ label {
 .counting {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 20px;
   align-items: center;
+  text-align: center;
 }
 
-.object-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
-  gap: 10px;
+.counting .game-stats {
   width: 100%;
-  max-width: 420px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) !important;
 }
 
-.object {
+.counting .object-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.counting .object {
   aspect-ratio: 1 / 1;
   border-radius: 12px;
-  background: linear-gradient(135deg, #ff9f9f, #ffd36b);
-  border: 2px solid #fff2f2;
+  background: linear-gradient(135deg, #ff6b9d, #4facfe);
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+  animation: bounceIn 0.6s ease-out forwards;
+  opacity: 0;
+  transform: scale(0.8);
 }
 
 .button-row {
@@ -746,6 +759,21 @@ label {
 
 .counting .object-grid {
   animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .balloons-game {

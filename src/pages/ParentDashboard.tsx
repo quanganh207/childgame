@@ -18,9 +18,23 @@ export function ParentDashboard() {
     useGameSettings();
 
   useEffect(() => {
-    // Đọc lịch sử từ localStorage
-    setGameHistory(getGameHistory());
-  }, []);
+    // Đọc lịch sử từ localStorage khi verified
+    if (verified) {
+      setGameHistory(getGameHistory());
+    }
+  }, [verified]);
+
+  // Refresh lịch sử khi component mount hoặc khi quay lại trang
+  useEffect(() => {
+    const handleFocus = () => {
+      if (verified) {
+        setGameHistory(getGameHistory());
+      }
+    };
+    
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
+  }, [verified]);
 
   const handleClearHistory = () => {
     clearGameHistory();

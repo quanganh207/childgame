@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GameShell } from "../../components/GameShell";
 import { useGameSettings } from "../../store/useGameSettings";
 import { launchConfetti } from "../../lib/confetti";
+import { saveGameResult } from "../../lib/gameHistory";
 
 const SHAPES = [
   { name: "Hình tròn", emoji: "🔵", id: "circle" },
@@ -86,6 +87,12 @@ export function ShapesGame() {
       if (newLives <= 0) {
         setIsGameOver(true);
         setFeedback("Đã hết thời gian! Game over.");
+        saveGameResult({
+          gameName: 'Hình Dạng',
+          level: levelNum + 1,
+          score: stars,
+          stars: Math.min(3, Math.floor(stars / 5))
+        });
       } else {
         setFeedback(`Hết giờ! Còn ${newLives} ❤️`);
         setCombo(0);
@@ -121,6 +128,12 @@ export function ShapesGame() {
         if (newLives <= 0) {
           setIsGameOver(true);
           setFeedback("Hết mạng! Game over.");
+          saveGameResult({
+            gameName: 'Hình Dạng',
+            level: levelNum + 1,
+            score: stars,
+            stars: Math.min(3, Math.floor(stars / 5))
+          });
         }
         return newLives;
       });

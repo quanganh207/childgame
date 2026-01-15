@@ -73,6 +73,8 @@ export function CountingGame() {
         setCombo(0);
         setTimeout(() => {
           setFeedback(null);
+          setLevelNum((prev) => prev + 1);
+          setLevel(makeLevel(levelNum + 1));
           setTimeLeft(TIMER_SECONDS);
         }, 1500);
       }
