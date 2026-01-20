@@ -1,5 +1,5 @@
 # BÁO CÁO PHÂN TÍCH VÀ THIẾT KẾ HỆ THỐNG
-## Dự Án: ChildGame - Nền Tảng Trò Chơi Giáo Dục Cho Trẻ Em
+## Dự Án: stemgme - Nền Tảng Trò Chơi Giáo Dục Cho Trẻ Em
 
 ---
 
@@ -7,7 +7,7 @@
 
 ### 1.1 Tổng Quan Dự Án
 
-**ChildGame** là nền tảng web giáo dục tương tác dành cho trẻ em (độ tuổi 3-7), kết hợp trò chơi mini với các kỹ năng học tập cơ bản (đếm số, nhận diện hình dạng, tư duy logic). Hệ thống hỗ trợ hai đối tượng người dùng:
+**stemgme** là nền tảng web giáo dục tương tác dành cho trẻ em (độ tuổi 3-7), kết hợp trò chơi mini với các kỹ năng học tập cơ bản (đếm số, nhận diện hình dạng, tư duy logic). Hệ thống hỗ trợ hai đối tượng người dùng:
 - **Trẻ em (Học viên)**: Chơi game, tích lũy điểm sao, mua avatar/sticker
 - **Phụ huynh (Quản trị viên)**: Theo dõi tiến độ, cấu hình cài đặt, kiểm soát nội dung qua Parental Gate
 
@@ -267,11 +267,11 @@ src/
 
 ```
 Frontend LocalStorage
-├─ childgame-settings
+├─ stemgme-settings
 │  ├─ soundOn: boolean
 │  ├─ musicOn: boolean
 │  └─ hintsEnabled: boolean
-└─ childgame-history
+└─ stemgme-history
    └─ Array<{gameName, level, score, stars, completedAt}>
 
 Firebase Firestore (Future)
@@ -494,7 +494,7 @@ E2E Tests (Cypress/Playwright):
 
 ### 7.1 Tổng Kết Dự Án
 
-**ChildGame** hiện đã hoàn thành **~70% chức năng cốt lõi**:
+**stemgme** hiện đã hoàn thành **~70% chức năng cốt lõi**:
 - ✅ 6 mini-games hoạt động ổn định
 - ✅ Authentication & Parental Control
 - ✅ Game History & Statistics

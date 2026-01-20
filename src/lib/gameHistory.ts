@@ -6,7 +6,7 @@ type GameHistory = {
   completedAt: string;
 };
 
-const HISTORY_KEY = 'childgame-history';
+const HISTORY_KEY = 'stemgme-history';
 
 export function saveGameResult(result: Omit<GameHistory, 'completedAt'>) {
   const history = getGameHistory();
