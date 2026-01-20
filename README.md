@@ -1,4 +1,4 @@
-# ChildGame (Frontend)
+# STEM Game (Frontend)
 
 Frontend Vite + React + TypeScript. Backend dùng Firebase (Auth + Firestore). Các mini-game sẽ dần bổ sung; hiện có màn mẫu "Counting".
 
