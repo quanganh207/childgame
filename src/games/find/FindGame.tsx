@@ -77,7 +77,7 @@ export function FindGame() {
         setFeedback("Đã hết thời gian! Game over.");
         saveGameResult({
           gameName: 'Tìm Số',
-          level: levelNum + 1,
+          level: levelNum,
           score: stars,
           stars: Math.min(3, Math.floor(stars / 5))
         });
@@ -128,7 +128,7 @@ export function FindGame() {
           setFeedback("Hết mạng! Game over.");
           saveGameResult({
             gameName: 'Tìm Số',
-            level: levelNum + 1,
+            level: levelNum,
             score: stars,
             stars: Math.min(3, Math.floor(stars / 5))
           });
@@ -155,12 +155,12 @@ export function FindGame() {
   const gridCols = level.gridSize === 9 ? 3 : level.gridSize === 12 ? 4 : 4;
 
   return (
-    <GameShell title="Tìm số" stars={stars} onBack={() => navigate("/play")}>      
+    <GameShell title="Làm toán STEM" stars={stars} onBack={() => navigate("/play")}>      
       <div className="find-game">
         <div className="game-stats">
           <div className="stat-item">
-            <span className="stat-label">Level</span>
-            <span className="stat-value">{levelNum + 1}</span>
+            <span className="stat-label">Điểm</span>
+            <span className="stat-value">{levelNum}</span>
           </div>
           <div className="stat-item">
             <span className="stat-label">Combo</span>

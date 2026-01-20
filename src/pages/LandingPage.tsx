@@ -7,7 +7,7 @@ export function LandingPage() {
         <p className="eyebrow">Học toán vui vẻ</p>
         <h1>Mini game cho trẻ em</h1>
         <p className="muted">
-          Đếm số, bóng bay, tập viết, tìm số, nối số, hình khối — tất cả trong một ứng
+          Đếm số, bóng bay, làm toán STEM, tìm số, nối số, hình khối — tất cả trong một ứng
           dụng. Kết hợp khen thưởng sao và cửa hàng avatar.
         </p>
         <div className="actions">

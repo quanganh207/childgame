@@ -66,7 +66,7 @@ export function ConnectGame() {
         setFeedback("Đã hết thời gian! Game over.");
         saveGameResult({
           gameName: 'Nối Số',
-          level: levelNum + 1,
+          level: levelNum,
           score: stars,
           stars: Math.min(3, Math.floor(stars / 5))
         });
@@ -117,7 +117,7 @@ export function ConnectGame() {
           setFeedback("Hết mạng! Game over.");
           saveGameResult({
             gameName: 'Nối Số',
-            level: levelNum + 1,
+            level: levelNum,
             score: stars,
             stars: Math.min(3, Math.floor(stars / 5))
           });
@@ -146,8 +146,8 @@ export function ConnectGame() {
       <div className="connect-game">
         <div className="game-stats">
           <div className="stat-item">
-            <span className="stat-label">Level</span>
-            <span className="stat-value">{levelNum + 1}</span>
+            <span className="stat-label">Điểm</span>
+            <span className="stat-value">{levelNum}</span>
           </div>
           <div className="stat-item">
             <span className="stat-label">Combo</span>

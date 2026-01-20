@@ -21,9 +21,9 @@ const GAMES = [
   },
   {
     id: "writing",
-    title: "Tập viết",
-    description: "Vẽ số trên Canvas theo nét.",
-    icon: "✏️",
+    title: "Đếm Ngón Tay",
+    description: "Giơ tay trước camera để trả lời câu hỏi.",
+    icon: "🖐️",
     color: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
   },
   {

@@ -89,7 +89,7 @@ export function ShapesGame() {
         setFeedback("Đã hết thời gian! Game over.");
         saveGameResult({
           gameName: 'Hình Dạng',
-          level: levelNum + 1,
+          level: levelNum,
           score: stars,
           stars: Math.min(3, Math.floor(stars / 5))
         });
@@ -130,7 +130,7 @@ export function ShapesGame() {
           setFeedback("Hết mạng! Game over.");
           saveGameResult({
             gameName: 'Hình Dạng',
-            level: levelNum + 1,
+            level: levelNum,
             score: stars,
             stars: Math.min(3, Math.floor(stars / 5))
           });
@@ -192,8 +192,8 @@ export function ShapesGame() {
       <div className="shapes-game">
         <div className="game-stats">
           <div className="stat-item">
-            <span className="stat-label">Level</span>
-            <span className="stat-value">{levelNum + 1}</span>
+            <span className="stat-label">Điểm</span>
+            <span className="stat-value">{levelNum}</span>
           </div>
           <div className="stat-item">
             <span className="stat-label">Combo</span>

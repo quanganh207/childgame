@@ -64,7 +64,7 @@ export function CountingGame() {
         // Lưu kết quả game
         saveGameResult({
           gameName: "Đếm số", 
-          level: levelNum + 1,
+          level: levelNum,
           score: stars,
           stars: Math.min(Math.floor(stars / 10), 3)
         });
@@ -122,7 +122,7 @@ export function CountingGame() {
           // Lưu kết quả game
           saveGameResult({
             gameName: "Đếm số", 
-            level: levelNum + 1,
+            level: levelNum,
             score: stars,
             stars: Math.min(Math.floor(stars / 10), 3)
           });
@@ -151,8 +151,8 @@ export function CountingGame() {
       <div className="counting">
         <div className="game-stats">
           <div className="stat-item">
-            <span className="stat-label">Level</span>
-            <span className="stat-value">{levelNum + 1}</span>
+            <span className="stat-label">Điểm</span>
+            <span className="stat-value">{levelNum}</span>
           </div>
           <div className="stat-item">
             <span className="stat-label">Combo</span>
