@@ -5,7 +5,7 @@ import { useGameSettings } from "../../store/useGameSettings";
 import { launchConfetti } from "../../lib/confetti";
 import { saveGameResult } from "../../lib/gameHistory";
 
-const TIMER_SECONDS = 15;
+const TIMER_SECONDS = 30;
 
 function makeLevel(levelNum: number) {
   const maxStart = Math.max(1, 15 - Math.floor(levelNum / 3));

@@ -14,7 +14,7 @@ export function NavBar({ userEmail }: Props) {
   return (
     <nav className="navbar">
       <Link to="/" className="brand">
-        stemgme
+        Stemgame
       </Link>
       <div className="nav-items">
         <Link to="/play" className={linkClass("/play")}>

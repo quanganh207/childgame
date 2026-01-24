@@ -15,7 +15,7 @@ const SHAPES = [
   { name: "Hình lục giác", emoji: "⬢", id: "hexagon" }
 ];
 
-const TIMER_SECONDS = 25;
+const TIMER_SECONDS = 40;
 
 function makeLevel(levelNum: number) {
   const shapesPool = SHAPES.slice(0, Math.min(5 + Math.floor(levelNum / 3), SHAPES.length));

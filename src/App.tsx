@@ -7,7 +7,7 @@ import { ParentDashboard } from "./pages/ParentDashboard";
 import { ShopPage } from "./pages/ShopPage";
 import { CountingGame } from "./games/counting/CountingGame";
 import { BalloonsGame } from "./games/balloons/BalloonsGame";
-import { WritingGame } from "./games/writing/WritingGame";
+import { WritingGame } from "./games/writing/Fingercount";
 import { FindGame } from "./games/find/FindGame";
 import { ConnectGame } from "./games/connect/ConnectGame";
 import { ShapesGame } from "./games/shapes/ShapesGame";

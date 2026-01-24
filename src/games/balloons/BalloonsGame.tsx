@@ -6,7 +6,7 @@ import { launchConfetti } from "../../lib/confetti";
 import { saveGameResult } from "../../lib/gameHistory";
 
 const COLORS = ["#ff6b9d", "#4facfe", "#ffa726", "#56ab2f", "#9b59b6", "#e74c3c", "#3498db"];
-const TIMER_SECONDS = 20;
+const TIMER_SECONDS = 40;
 
 function makeLevel(levelNum: number) {
   const target = Math.min(1 + Math.floor(levelNum / 2), 9);

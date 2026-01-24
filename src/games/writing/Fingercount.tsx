@@ -32,7 +32,12 @@ export function WritingGame() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [detectedFingers, setDetectedFingers] = useState(0);
   const [feedback, setFeedback] = useState("");
+  const [holdProgress, setHoldProgress] = useState(0);
   const [cameraError, setCameraError] = useState("");
+  const isProcessingRef = useRef(false);
+  const confettiLaunchedRef = useRef(false);
+  const holdStartRef = useRef<number | null>(null);
+  const lastDetectedRef = useRef<number | null>(null);
 
   const currentQuestion = QUESTIONS[currentQuestionIndex];
 
@@ -152,21 +157,49 @@ export function WritingGame() {
       ctx.restore();
 
       const fingers = countFingers(results);
+      const hasHand = !!(results.multiHandLandmarks && results.multiHandLandmarks.length > 0);
       setDetectedFingers(fingers);
 
-      // Kiểm tra đáp án - chỉ hiển thị feedback khi có phát hiện
-      if (fingers > 0) {
-        if (fingers === currentQuestion.answer) {
-          setFeedback("🎉 Chính xác!");
+      if (isProcessingRef.current) {
+        return;
+      }
+
+      const now = performance.now();
+      const isAnswering = hasHand && fingers === currentQuestion.answer;
+
+      if (isAnswering) {
+        if (lastDetectedRef.current !== fingers || holdStartRef.current === null) {
+          holdStartRef.current = now;
+        }
+        lastDetectedRef.current = fingers;
+
+        const elapsed = now - (holdStartRef.current ?? now);
+        const progress = Math.min(1, elapsed / 2000);
+        setHoldProgress(progress);
+        setFeedback(progress >= 1 ? "🎉 Chính xác!" : "Đang giữ ổn định...");
+
+        if (elapsed >= 2000) {
+          isProcessingRef.current = true;
+          if (soundOn && !confettiLaunchedRef.current) {
+            confettiLaunchedRef.current = true;
+            launchConfetti();
+          }
           setTimeout(() => {
             handleNext();
-          }, 2000); // Tăng thời gian để bé có thể thấy feedback
-        } else {
-          // Không hiển thị feedback "sai" ngay lập tức, chỉ hiển thị số đang đếm
-          setFeedback("");
+            setHoldProgress(0);
+            holdStartRef.current = null;
+            lastDetectedRef.current = null;
+            isProcessingRef.current = false;
+            confettiLaunchedRef.current = false;
+          }, 500);
         }
       } else {
-        setFeedback("");
+        holdStartRef.current = null;
+        lastDetectedRef.current = hasHand ? fingers : null;
+        setHoldProgress(0);
+        if (!isProcessingRef.current) {
+          setFeedback(hasHand ? "Hãy giữ yên 2 giây" : "");
+        }
       }
     });
 
@@ -191,11 +224,11 @@ export function WritingGame() {
 
   const handleNext = () => {
     setStars((prev) => prev + 1);
-    if (soundOn) {
-      launchConfetti();
-    }
     setFeedback("");
     setDetectedFingers(0);
+    setHoldProgress(0);
+    holdStartRef.current = null;
+    lastDetectedRef.current = null;
     const nextIndex = (currentQuestionIndex + 1) % QUESTIONS.length;
     setCurrentQuestionIndex(nextIndex);
   };
@@ -203,6 +236,9 @@ export function WritingGame() {
   const handleSkip = () => {
     setFeedback("");
     setDetectedFingers(0);
+    setHoldProgress(0);
+    holdStartRef.current = null;
+    lastDetectedRef.current = null;
     const nextIndex = (currentQuestionIndex + 1) % QUESTIONS.length;
     setCurrentQuestionIndex(nextIndex);
   };
@@ -284,11 +320,16 @@ export function WritingGame() {
                 boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
               }}>
                 <div style={{ fontSize: "0.9rem", opacity: 0.8 }}>
-                  Đang đếm
+                    Đang đếm
                 </div>
                 <div style={{ fontSize: "2.2rem", marginTop: "0.2rem" }}>
                   {detectedFingers} 🖐️
                 </div>
+                {holdProgress > 0 && (
+                  <div style={{ marginTop: "0.3rem", fontSize: "0.95rem", color: "#a5f3fc" }}>
+                    Giữ thêm {Math.max(0, 2 - Math.ceil(holdProgress * 2))}s
+                  </div>
+                )}
               </div>
             </div>
           )}

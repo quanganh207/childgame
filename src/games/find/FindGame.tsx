@@ -15,7 +15,7 @@ const STYLES = [
   { font: "'Trebuchet MS'", color: "#3498db", weight: "800" }
 ];
 
-const TIMER_SECONDS = 12;
+const TIMER_SECONDS = 30;
 
 function makeLevel(levelNum: number) {
   const target = Math.floor(Math.random() * 10);
